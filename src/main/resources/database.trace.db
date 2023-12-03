@@ -1,0 +1,6 @@
+2023-12-03 10:20:48.430526+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BOOK" not found (this database is empty); SQL statement:
+select b1_0.id,b1_0.author,b1_0.category_id,b1_0.created_date,b1_0.description,b1_0.is_favourite,b1_0.isbn,b1_0.modified_date,b1_0.title from book b1_0 where b1_0.title=? [42104-224]
+2023-12-03 10:21:45.510349+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CATEGORY" not found (this database is empty); SQL statement:
+select c1_0.id,c1_0.category_name,c1_0.created_date,c1_0.modified_date from category c1_0 where c1_0.category_name=? [42104-224]
