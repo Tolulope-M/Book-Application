@@ -25,7 +25,7 @@ The Book Application is a Java Spring Boot application for managing books and ca
 
 - Java Development Kit (JDK) 17
 - Maven
-- Java IDE (IntelliJ IDEA, Eclipse, etc.)
+- Java IDE (IntelliJ IDEA)
 
 ### Installation
 
