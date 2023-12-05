@@ -1,6 +1,5 @@
 package com.bookapplication.model.requestDTO;
 
-import com.bookapplication.enums.CategoryName;
 import lombok.Getter;
 import lombok.Setter;
 

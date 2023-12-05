@@ -2,6 +2,7 @@ package com.bookapplication.constants;
 
 public class AppConstants {
     public static final String BOOK_NOT_FOUND = "Book not found!";
+    public static final String BOOK_ALREADY_EXIST = "Book already exist!";
     public static final String CATEGORY_NOT_FOUND = "Category not found!";
     public static final String CATEGORY_ALREADY_EXIST = "Category already exist!";
     public static final String SUCCESS = "Success";

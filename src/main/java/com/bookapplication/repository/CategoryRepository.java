@@ -1,7 +1,6 @@
 package com.bookapplication.repository;
 
 import com.bookapplication.entity.Category;
-import com.bookapplication.enums.CategoryName;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

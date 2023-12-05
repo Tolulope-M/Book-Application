@@ -32,7 +32,7 @@ public class BookServiceImpl implements BookService {
             Optional<Book> bookResponse = bookRepository.findByTitle(bookDTO.getTitle());
 
             if (bookResponse.isPresent()) {
-                throw new ClientSideException(BOOK_NOT_FOUND);
+                throw new ClientSideException(BOOK_ALREADY_EXIST);
             }
 
             Book book = new Book();
