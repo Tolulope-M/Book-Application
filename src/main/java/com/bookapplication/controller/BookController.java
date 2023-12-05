@@ -4,6 +4,7 @@ import com.bookapplication.entity.Book;
 import com.bookapplication.model.requestDTO.BookDTO;
 import com.bookapplication.model.requestresponse.ApiResponse;
 import com.bookapplication.service.BookService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +46,7 @@ public class BookController {
      * @return ResponseEntity containing ApiResponse with a list of all books.
      */
     @GetMapping()
+    @Operation(summary = "Get all books", description = "Get a list of all books")
     public ResponseEntity<ApiResponse<List<Book>>> getAllBooks() {
         return ResponseEntity.ok(bookService.getAllBooks());
     }
