@@ -3,6 +3,7 @@ package com.bookapplication.controller;
 import com.bookapplication.entity.Category;
 import com.bookapplication.model.requestDTO.CategoryDTO;
 import com.bookapplication.model.requestresponse.ApiResponse;
+import com.bookapplication.model.requestresponse.PaginationResponse;
 import com.bookapplication.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -46,8 +47,9 @@ public class CategoryController {
      * @return ResponseEntity containing ApiResponse with a list of all categories.
      */
     @GetMapping()
-    public ResponseEntity<ApiResponse<List<Category>>> getAllCategories() {
-        return ResponseEntity.ok(categoryService.getAllCategories());
+    public ResponseEntity<PaginationResponse> getAllCategories(@RequestParam(value = "offset", defaultValue = "0") int offset,
+                                                               @RequestParam(value = "limit", defaultValue = "5") int limit) {
+        return ResponseEntity.ok(categoryService.getAllCategories(offset, limit));
     }
 
     /**

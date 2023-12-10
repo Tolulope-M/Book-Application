@@ -1,14 +1,19 @@
 package com.bookapplication.service.impl;
 
+import com.bookapplication.entity.Book;
 import com.bookapplication.entity.Category;
 import com.bookapplication.exception.ClientSideException;
 import com.bookapplication.exception.ServerSideException;
 import com.bookapplication.model.requestDTO.CategoryDTO;
 import com.bookapplication.model.requestresponse.ApiResponse;
+import com.bookapplication.model.requestresponse.PaginationResponse;
 import com.bookapplication.repository.CategoryRepository;
 import com.bookapplication.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -63,14 +68,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ApiResponse<List<Category>> getAllCategories() {
-        List<Category> categoryList = categoryRepository.findAll();
-        log.info("category list >> {}", categoryList);
-        return ApiResponse.<List<Category>>builder()
-                .status(SUCCESS_STATUS_CODE)
-                .message(SUCCESS)
-                .data(categoryList)
-                .build();
+    public PaginationResponse getAllCategories(int offset, int limit) {
+        Pageable pageable = PageRequest.of(offset, limit);
+        Page<Category> page = categoryRepository.findAll(pageable);
+        return new PaginationResponse<>(page.getContent(), page);
     }
 
     @Override
