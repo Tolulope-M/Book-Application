@@ -6,12 +6,16 @@ import com.bookapplication.exception.ClientSideException;
 import com.bookapplication.exception.ServerSideException;
 import com.bookapplication.model.requestDTO.BookDTO;
 import com.bookapplication.model.requestresponse.ApiResponse;
+import com.bookapplication.model.requestresponse.PaginationResponse;
 import com.bookapplication.repository.BookRepository;
 import com.bookapplication.repository.CategoryRepository;
 import com.bookapplication.service.BookService;
 import com.bookapplication.util.IsbnGeneration;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,13 +75,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public ApiResponse<List<Book>> getAllBooks() {
-        List<Book> bookList = bookRepository.findAll();
-        return ApiResponse.<List<Book>>builder()
-                .status(SUCCESS_STATUS_CODE)
-                .message(SUCCESS)
-                .data(bookList)
-                .build();
+    public PaginationResponse getAllBooks(int offset, int limit) {
+        Pageable pageable = PageRequest.of(offset, limit);
+        Page<Book> page = bookRepository.findAll(pageable);
+        return new PaginationResponse<>(page.getContent(), page);
+
     }
 
     @Override

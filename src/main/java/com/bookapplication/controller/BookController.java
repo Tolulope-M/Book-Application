@@ -3,6 +3,7 @@ package com.bookapplication.controller;
 import com.bookapplication.entity.Book;
 import com.bookapplication.model.requestDTO.BookDTO;
 import com.bookapplication.model.requestresponse.ApiResponse;
+import com.bookapplication.model.requestresponse.PaginationResponse;
 import com.bookapplication.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -47,8 +48,9 @@ public class BookController {
      */
     @GetMapping()
     @Operation(summary = "Get all books", description = "Get a list of all books")
-    public ResponseEntity<ApiResponse<List<Book>>> getAllBooks() {
-        return ResponseEntity.ok(bookService.getAllBooks());
+    public ResponseEntity<PaginationResponse> getAllBooks(@RequestParam(value = "offset", defaultValue = "0") int offset,
+                                                          @RequestParam(value = "limit", defaultValue = "5") int limit) {
+        return ResponseEntity.ok(bookService.getAllBooks(offset, limit));
     }
 
     /**
