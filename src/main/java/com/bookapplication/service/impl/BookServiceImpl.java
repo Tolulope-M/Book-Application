@@ -123,12 +123,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public ApiResponse<List<Book>> getAllFavoriteBooks() {
-       return ApiResponse.<List<Book>>builder()
-               .status(SUCCESS_STATUS_CODE)
-               .message(SUCCESS)
-               .data(bookRepository.findAllByIsFavouriteTrue())
-               .build();
+    public PaginationResponse getAllFavoriteBooks(int offset, int limit) {
+        Pageable pageable = PageRequest.of(offset, limit);
+        Page<Book> page = bookRepository.findAllByIsFavouriteTrue(pageable);
+        return new PaginationResponse<>(page.getContent(), page);
     }
 
     @Override

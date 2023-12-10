@@ -14,7 +14,7 @@ public interface BookService {
      PaginationResponse getAllBooks(int offset, int limit);
      ApiResponse<Book> addBookToCategory(Long categoryId,Long bookId);
      ApiResponse<Book> addBookToFavorites(Long bookId);
-     ApiResponse<List<Book>> getAllFavoriteBooks();
+     PaginationResponse getAllFavoriteBooks(int offset, int limit);
      ApiResponse<Book> deleteBook(Long bookId);
 
 

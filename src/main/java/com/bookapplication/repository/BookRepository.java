@@ -2,6 +2,8 @@ package com.bookapplication.repository;
 
 import com.bookapplication.entity.Book;
 import com.bookapplication.entity.Category;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +16,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     Optional<Book> findByIsbn(String isbn);
 
-    List<Book> findAllByIsFavouriteTrue();
+    Page<Book> findAllByIsFavouriteTrue(Pageable pageable);
     List<Book> findAllByCategory(Category category);
 }

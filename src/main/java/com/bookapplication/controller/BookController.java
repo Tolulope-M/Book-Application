@@ -83,8 +83,9 @@ public class BookController {
      * @return ResponseEntity containing ApiResponse with a list of all favorite books.
      */
     @GetMapping("/favorite")
-    public ResponseEntity<ApiResponse<List<Book>>> getAllFavoriteBooks() {
-        return ResponseEntity.ok(bookService.getAllFavoriteBooks());
+    public ResponseEntity<PaginationResponse> getAllFavoriteBooks(@RequestParam(value = "offset", defaultValue = "0") int offset,
+                                                                  @RequestParam(value = "limit", defaultValue = "5") int limit){
+        return ResponseEntity.ok(bookService.getAllFavoriteBooks(offset, limit));
     }
 
     /**
